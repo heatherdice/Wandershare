@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wandershare</title>
+</head>
+<body>
+    <header>
+        <h1>Wandershare</h1>
+        <a href="/wandering/new">New Wandering</a> | <a href="/user/{{session.user_id}}/wanderings">Your Wanderings</a> | <a href="/logout">Logout</a>
+    </header>
+
+    <main>
+        <h2>Recent Wanderings</h2>
+
+        <select name="" id="">
+            <option value="">Sort By</option>
+            <option value="">username</option>
+            <option value="">location</option>
+            <option value="">rating</option>
+        </select>
+
+        {% for this_wandering in all_wanderings %}
+        <ul>
+            <li>{{this_wandering.user.username}}</li>
+            <li>{{this_wandering.location}}</li>
+            <li>{{this_wandering.duration}}</li>
+            <li>{{this_wandering.rating}}</li>
+        </ul>
+        {% endfor %}
+    </main>
+</body>
+</html>

@@ -23,8 +23,36 @@
     </main>
 
     <footer>
-        <button>Login</button>
+        <div id="login form">
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id="popup">
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                        <button onclick="popup.remove()">Okay</button>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <label>Email:
+                    <input type="email" name="email">
+                </label>
+                <label>Password:
+                    <input type="password" name="password">
+                </label>
+                <input type="submit" value="Login">
+            </form>
+
+        </div>
+
+        <!-- <button id="login button">Login</button> -->
+
         <button><a href="/user/register">Register</a></button>
     </footer>
+
+    <script src="static/js/script.js"></script>
 </body>
 </html>

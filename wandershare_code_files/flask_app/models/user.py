@@ -25,8 +25,8 @@ class User:
             return False
         data = cls.parse_registration_data(data)
         query = """
-        INSERT INTO users (first_name, last_name, email, password, created_at, updated_at)
-        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW())
+        INSERT INTO users (first_name, last_name, username, email, password)
+        VALUES (%(first_name)s, %(last_name)s, %(username)s, %(email)s, %(password)s)
         ;"""
         result = connectToMySQL(cls.db).query_db(query, data)
         session['user_id'] = result
@@ -59,7 +59,18 @@ class User:
             result = cls(result[0])
         return result
 
-
+    @classmethod
+    def get_logged_in_user(cls):
+        data = {'id' : session['user_id']}
+        query = """
+        SELECT *
+        FROM users
+        WHERE id = %(id)s
+        ;"""
+        result = connectToMySQL(cls.db).query_db(query, data)
+        if result:
+            result = cls(result[0])
+        return result
 
 # UPDATE
 
@@ -103,6 +114,7 @@ class User:
         parsed_data = {}
         parsed_data['first_name'] = data['first_name']
         parsed_data['last_name'] = data['last_name']
+        parsed_data['username'] = data['username']
         parsed_data['email'] = data['email'].lower()
         parsed_data['password'] = bcrypt.generate_password_hash(data['password'])
         return parsed_data
@@ -115,8 +127,8 @@ class User:
             if bcrypt.check_password_hash(this_user.password, data['password']):
                 session['user_id'] = this_user.id
                 return True
-            flash('Your login failed!')
+            flash('Incorrect password.')
             return False
-        flash('Your login failed!')
+        flash('Incorrect email or password.')
         return False
 

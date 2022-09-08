@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Wandershare</title>
+</head>
+<body>
+    <header>
+        <h1>Wandershare</h1>
+        <a href="/dashboard">Dashboard</a> | <a href="#">Your Wanderings</a> | <a href="/logout">Logout</a>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div id="popup">
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+            <button onclick="popup.remove()">Okay</button>
+        </div>
+        {% endif %}
+    {% endwith %}
+        
+        <form action="/wanderings/add" method="post" enctype="multipart/form-data">
+            <label>Location:
+                <input type="text" name="location">
+            </label><br>
+
+            <label>Duration:
+                <input type="text" name="duration">
+            </label><br>
+
+            Rating:
+            <div class="rating">
+                <input type="radio" id="star5" class="radio-btn hide" value="5">
+                    <label for="star5">☆</label>
+                <input type="radio" id="star5" class="radio-btn hide" value="4">
+                    <label for="star4">☆</label>
+                <input type="radio" id="star5" class="radio-btn hide" value="3">
+                    <label for="star3">☆</label>
+                <input type="radio" id="star5" class="radio-btn hide" value="2">
+                    <label for="star2">☆</label>
+                <input type="radio" id="star5" class="radio-btn hide" value="1">
+                    <label for="star1">☆</label>
+                <div class="clear"></div>
+            </div><br>
+            
+            <label>Description:
+                <textarea type="text" name="description"></textarea>
+            </label><br>
+            
+            <label>Image:
+                <input type="file" multiple>
+            </label><br>
+                        
+            <input type="submit" value="Submit">
+            <input type="hidden" name="user_id" value={{session.user_id}}>
+        </form>
+    </main>
+
+
+</body>
+</html>

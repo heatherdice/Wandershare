@@ -27,7 +27,7 @@
         <div class="col-12"></div> <!--100%-->
     </div>
 
-    <main id="index-main">
+    <main>
         <div class="row">
             <div class="col-4"></div> <!--25%-->
             <div id="about-section" class="col-4"> <!--50%-->
@@ -52,18 +52,20 @@
             <div class="row">
                 <div class="col-1"></div> <!--8.33%-->
                     <div class="col-10"> <!--83.33%-->
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <div id="popup">
-                                    {% for message in messages %}
-                                        <p>{{message}}</p>
-                                    {% endfor %}
-                                    <button onclick="popup.remove()">Okay</button>
-                                </div>
-                            {% endif %}
-                        {% endwith %}
                         <div id="login-form">
                             <h4>Log In</h4>
+
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <div id="popup">
+                                        {% for message in messages %}
+                                            <p>{{message}}</p>
+                                        {% endfor %}
+                                        <button id="btn-valid-login" onclick="popup.remove()">Okay</button>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+
                             <form action="/login" method="POST">
                                 <label>Email:
                                     <input type="email" name="email">
@@ -73,7 +75,9 @@
                                 </label>
                                 <input id="btn-login" type="submit" value="Login">
                             </form>
-                            <button id="btn-register"><a href="/user/register" id="register-txt">Register</a></button>
+
+                            <button id="btn-reg-link"><a href="/user/register" id="register-txt">Register</a></button>
+                        
                         </div>
                     </div>
                 <div class="col-1"></div> <!--8.33%-->

@@ -27,7 +27,7 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-/* applies to index only */
+/* applies to index */
 #index-header {
     width: 100%;
     display: flex;
@@ -80,16 +80,48 @@
 #login-form {
     font-size: 1.5vw;
 }
-#btn-login, #btn-register {
+#btn-login, #btn-reg-link, #btn-valid-login {
     margin: 10px;
     border-radius: 25px;
     padding: 5px 20px;
     background-color: #474853;
     color: #86B3D1;
+    cursor: pointer;
 }
 #register-txt {
     text-decoration: none;
     color: #86B3D1;
+}
+
+/* applies to registration */
+#lake-img {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#register-form {
+    border-radius: 25px;
+    padding: 5px 20px;
+    background: rgba(251, 238, 193, 0.7);
+    text-align: center;
+    font-family: sans-serif;
+    color: #844D36;
+}
+.register-lbl {
+    display: block;
+    margin-bottom: 20px;
+}
+#btn-register, #btn-valid-reg {
+    margin: 10px;
+    border-radius: 25px;
+    padding: 5px 20px;
+    background-color: #844D36;
+    color: #FBEEC1;
 }
 
 /* applies to rating stars only */

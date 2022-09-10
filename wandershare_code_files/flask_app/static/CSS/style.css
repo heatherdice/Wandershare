@@ -1,3 +1,70 @@
+/* applies to entire site */
+* {
+    box-sizing: border-box;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* columns for responsiveness */
+[class *= "col-"] {
+    float: left;
+    padding: 15px;
+    /* border: 15px solid red; */
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+/* applies to index only */
+#index-header {
+    width: 100%;
+    background-image: linear-gradient(
+        to bottom right, #659DBD, #FBEEC1);
+    color: antiquewhite;
+    font-family: cursive;
+    display: flex;
+    padding: 1vw;
+}
+
+#wandershare {
+    font-size: 5vw;
+    margin: 0;
+}
+
+hr {
+    background-color: #FBEEC1;
+}
+
+#tagline {
+    font-size: 2vw;
+    margin: 0;
+    padding-top: 2.5%;
+}
+
+#logo {
+    float: right;
+    max-width: 100%;
+    height: auto;
+}
+
+#about {
+    font-family: sans-serif;
+}
+
+/* applies to rating stars only */
 .hide {
     display: none;
 }

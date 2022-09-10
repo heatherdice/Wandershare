@@ -3,13 +3,12 @@
     box-sizing: border-box;
 }
 
+/* rows and columns for responsiveness */
 .row::after {
     content: "";
     clear: both;
     display: table;
 }
-
-/* columns for responsiveness */
 [class *= "col-"] {
     float: left;
     padding: 15px;
@@ -31,49 +30,76 @@
 /* applies to index only */
 #index-header {
     width: 100%;
-    background-image: linear-gradient(
-        to bottom right, #659DBD, #FBEEC1);
-    color: antiquewhite;
-    font-family: cursive;
     display: flex;
     padding: 1vw;
+    background-image: linear-gradient(
+        to bottom right, #659DBD, #FBEEC1);
+    font-family: cursive;
+    text-shadow: 2px 2px #474853;
+    color: antiquewhite;
 }
-
 #wandershare {
-    font-size: 5vw;
+    font-size: 3vw;
     margin: 0;
 }
-
-hr {
+#hr-1 {
     background-color: #FBEEC1;
+    margin-bottom: 2.5%;
 }
-
-#tagline {
+#tagline, #about-wandershare {
     font-size: 2vw;
     margin: 0;
-    padding-top: 2.5%;
 }
-
 #logo {
     float: right;
     max-width: 100%;
     height: auto;
 }
-
-#about {
+#video {
+    position: fixed;
+    object-fit: cover;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+#about-section, #login-form {
+    border: 1px solid #AAA0A0;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #474853;
+    background-color: #FBEEC1;
+    padding: 2%;
+    text-align: center;
     font-family: sans-serif;
+    color: #474853;
+}
+#hr-2 {
+    background-color: #474853;
+}
+#login-form {
+    font-size: 1.5vw;
+}
+#btn-login, #btn-register {
+    margin: 10px;
+    border-radius: 25px;
+    padding: 5px 20px;
+    background-color: #474853;
+    color: #86B3D1;
+}
+#register-txt {
+    text-decoration: none;
+    color: #86B3D1;
 }
 
 /* applies to rating stars only */
 .hide {
     display: none;
 }
-
 .clear {
     float: none;
     clear: both;
 }
-
 .rating {
     width: 90px;
     unicode-bidi: bidi-override;
@@ -81,7 +107,6 @@ hr {
     text-align: center;
     position: relative;
 }
-
 .rating > label {
     float: right;
     display: inline;
@@ -92,13 +117,11 @@ hr {
     cursor: pointer;
     color: #000;
 }
-
 .rating > label:hover,
 .rating > label:hover ~ label,
 .rating > input.radio-btn:checked ~ label {
     color: transparent;
 }
-
 .rating > label:hover:before,
 .rating > label:hover ~ label:before,
 .rating > input.radio-btn:checked ~ label:before,

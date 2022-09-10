@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Wandershare</title>
+    <link rel="icon" type="image/x-icon" href="static/images/wandershare_logo.png">
 </head>
+
 <body>
     <header id="index-header" class="row">
         <div class="col-9"> <!--75%-->
             <h1 id="wandershare">Wandershare</h1>
-            <hr>
+            <hr id="hr-1">
             <h2 id="tagline">Sharing stories of wanderings and adventures.</h2>
         </div>
         <div class="col-3"> <!--25%-->
@@ -19,50 +21,67 @@
         </div>
     </header>
 
-    <main class="row">
-        <div class="col-3"></div>
-        <div id="about" class="col-6">
-            <h3>About Wandershare</h3>
-            <p>
-                Wandershare is a virtual scrapbook of all of your wanderings!
-                Upload photos, write descriptions, and rate the places you've been.
-                Planning a trip? Check out what others are saying about their wanderings!
-                Wandershare is your one-stop scrapbook and travel destination review site.
-            </p>
+    <video autoplay muted loop id="video" src="static/images/mountain_vid.mp4" type="video/mp4"></video>
+
+    <div class="row">
+        <div class="col-12"></div> <!--100%-->
+    </div>
+
+    <main id="index-main">
+        <div class="row">
+            <div class="col-4"></div> <!--25%-->
+            <div id="about-section" class="col-4"> <!--50%-->
+                <h3 id="about-wandershare">About Wandershare</h3>
+                <hr id="hr-2">
+                <p>
+                    Wandershare is a virtual scrapbook of all of your wanderings!
+                    Upload photos, write descriptions, and rate the places you've been.
+                    Planning a trip? Check out what others are saying about their wanderings!
+                    Wandershare is your one-stop scrapbook and travel destination review site.
+                    Register or log in below!
+                </p>
+            </div>
+            <div class="col-4"></div> <!--25%-->
         </div>
-        <div class="col-3"></div>
-    </main>
 
-    <footer class="row">
-        <div id="login form">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
 
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div id="popup">
-                        {% for message in messages %}
-                            <p>{{message}}</p>
-                        {% endfor %}
-                        <button onclick="popup.remove()">Okay</button>
+        <div id="index-footer">
+            <div class="row">
+                <div class="col-1"></div> <!--8.33%-->
+                    <div class="col-10"> <!--83.33%-->
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div id="popup">
+                                    {% for message in messages %}
+                                        <p>{{message}}</p>
+                                    {% endfor %}
+                                    <button onclick="popup.remove()">Okay</button>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                        <div id="login-form">
+                            <h4>Log In</h4>
+                            <form action="/login" method="POST">
+                                <label>Email:
+                                    <input type="email" name="email">
+                                </label>
+                                <label>Password:
+                                    <input type="password" name="password">
+                                </label>
+                                <input id="btn-login" type="submit" value="Login">
+                            </form>
+                            <button id="btn-register"><a href="/user/register" id="register-txt">Register</a></button>
+                        </div>
                     </div>
-                {% endif %}
-            {% endwith %}
-
-            <form action="/login" method="POST">
-                <label>Email:
-                    <input type="email" name="email">
-                </label>
-                <label>Password:
-                    <input type="password" name="password">
-                </label>
-                <input type="submit" value="Login">
-            </form>
-
+                <div class="col-1"></div> <!--8.33%-->
+            </div>    
         </div>
 
         <!-- <button id="login button">Login</button> -->
-
-        <button><a href="/user/register">Register</a></button>
-    </footer>
+    </main>
 
     <script src="static/js/script.js"></script>
 </body>

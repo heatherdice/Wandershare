@@ -15,46 +15,50 @@
 
     <main>
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div id="popup">
-            {% for message in messages %}
-                <p>{{message}}</p>
-            {% endfor %}
-            <button onclick="popup.remove()">Okay</button>
-        </div>
-        {% endif %}
-    {% endwith %}
+            {% if messages %}
+                <div id="popup">
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                    <button onclick="popup.remove()">Okay</button>
+                </div>
+            {% endif %}
+        {% endwith %}
         
         <form action="/wanderings/add" method="post" enctype="multipart/form-data">
             <label>Location:
                 <input type="text" name="location">
             </label><br>
 
-            <label>Duration:
-                <input type="text" name="duration">
+            <label>Start Date: 
+                <input type="date" name="start_date">
+            </label><br>
+
+            <label>End Date: 
+                <input type="date" name="end_date">
             </label><br>
 
             Rating:
             <div class="rating">
-                <input type="radio" id="star5" class="radio-btn hide" value="5">
+                <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide">
                     <label for="star5">☆</label>
-                <input type="radio" id="star5" class="radio-btn hide" value="4">
+                <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide">
                     <label for="star4">☆</label>
-                <input type="radio" id="star5" class="radio-btn hide" value="3">
+                <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide">
                     <label for="star3">☆</label>
-                <input type="radio" id="star5" class="radio-btn hide" value="2">
+                <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide">
                     <label for="star2">☆</label>
-                <input type="radio" id="star5" class="radio-btn hide" value="1">
+                <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide">
                     <label for="star1">☆</label>
                 <div class="clear"></div>
             </div><br>
             
-            <label>Description:
-                <textarea type="text" name="description"></textarea>
+            <label>Details:
+                <textarea type="text" name="details"></textarea>
             </label><br>
             
             <label>Image:
-                <input type="file" multiple>
+                <input type="file" name="file" multiple>
             </label><br>
                         
             <input type="submit" value="Submit">

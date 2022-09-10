@@ -1,5 +1,6 @@
 from flask import flash
 from flask_app.models import user
+from flask_app.controllers import wanderings
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class Wandering:
@@ -7,7 +8,8 @@ class Wandering:
     def __init__(self, data):
         self.id = data['id']
         self.location = data['location']
-        self.duration = data['duration']
+        self.start_date = data['start_date']
+        self.end_date = data['end_date']
         self.rating = data['rating']
         self.details = data['details']
         self.image = data['image']
@@ -19,11 +21,9 @@ class Wandering:
 #CREATE
     @classmethod
     def create_wandering(cls, data):
-        if not cls.validate_wandering(data):
-            return False
         query = """
-        INSERT INTO wanderings (location, duration, rating, details, image, user_id)
-        VALUES (%(location)s, %(duration)s, %(rating)s, %(details)s, %(image)s, %(user_id)s)
+        INSERT INTO wanderings (location, start_date, end_date, rating, details, image, user_id)
+        VALUES (%(location)s, %(start_date)s, %(end_date)s, %(rating)s, %(details)s, %(image)s, %(user_id)s)
         ;"""
         return connectToMySQL(cls.db).query_db(query, data)
 
@@ -110,3 +110,32 @@ class Wandering:
 
 
 #DELETE
+
+
+#VALIDATE
+
+@staticmethod
+def validate_wandering(form, file):
+    print(form)
+    print(file)
+    is_valid = True
+    if len(form['location']) < 2:
+        flash('Wandering location should be at least two characters long.')
+        is_valid = False
+    if len(form['start_date']) < 10:
+        flash('Please enter a start date.')
+        is_valid = False
+    if form['end_date'] == "":
+        flash('Please enter an end date.')
+        is_valid = False
+    if not form.get('rating'):
+        flash('Please enter a rating')
+        is_valid = False
+    if len(form['details']) < 20:
+        flash('Please write a more detailed description of your trip.')
+        is_valid = False
+    if 'file' not in file:
+        flash('No file part')
+        is_valid = False
+    print(form)
+    return is_valid

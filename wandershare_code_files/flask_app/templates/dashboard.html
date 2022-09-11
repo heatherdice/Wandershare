@@ -4,32 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Wandershare</title>
+    <link rel="icon" type="image/x-icon" href="../static/images/wandershare_logo.png">
 </head>
 <body>
-    <header>
-        <h1>Wandershare</h1>
-        <a href="/wandering/new">New Wandering</a> | <a href="/user/{{session.user_id}}/wanderings">Your Wanderings</a> | <a href="/logout">Logout</a>
+    <header id="index-header" class="row">
+        <div class="col-9"> <!--75%-->
+            <h1 id="wandershare">Wandershare</h1>
+            <hr id="hr-header">
+            <a href="/wandering/new" class="link-txt">New Wandering</a> | 
+            <a href="/user/{{session.user_id}}/wanderings" class="link-txt">Your Wanderings</a> | 
+            <a href="/logout" class="link-txt">Logout</a>
+        </div>
+        <div class="col-3"> <!--25%-->
+            <img src="../static/images/wandershare_logo.png" alt="Wandershare logo" id="logo">
+        </div>
+    
     </header>
 
+    <img src="static/images/french_town.png" alt="French town" id="french-town-img">
+
     <main>
-        <h2>Recent Wanderings</h2>
+        <div class="row">
+            <div class="col-12"><h2 id="recent-wanderings">Recent Wanderings</h2></div>
+        </div>
 
-        <select name="" id="">
-            <option value="">Sort By</option>
-            <option value="">username</option>
-            <option value="">location</option>
-            <option value="">rating</option>
-        </select>
+        <div class="row">
+            <div class="col-2"></div>
 
-        {% for this_wandering in all_wanderings %}
-        <ul>
-            <li>{{this_wandering.user.username}}</li>
-            <li>{{this_wandering.location}}</li>
-            <li>{{this_wandering.duration}}</li>
-            <li>{{this_wandering.rating}}</li>
-        </ul>
-        {% endfor %}
+            <div class="col-8">
+                <table>
+                    <thead>
+                        <th>Username</th>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Rating</th>
+                    </thead>
+
+                    <tbody>
+                        {% for this_wandering in all_wanderings %}
+                            <tr>
+                                <td>{{this_wandering.user.username}}</td>
+                                <td>{{this_wandering.location}}</td>
+                                <td>{{this_wandering.start_date}}</td>
+                                <td>{{this_wandering.end_date}}</td>
+                                <td>{{this_wandering.rating}}</td>        
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-2">
+        </div>
     </main>
 </body>
 </html>

@@ -40,9 +40,9 @@ def upload_file():
             return redirect('/wandering/new')
         flash('Not an allowed file type.')
         if file.filename == '':
-            flash('No selected file')
+            flash('No selected file.')
             return redirect('/wandering/new')
-        return redirect('/wandering/new')
+        return redirect('/dashboard')
     return redirect('/')
 
 # READ
@@ -60,7 +60,34 @@ def new_wandering_page():
     this_user = user.User.get_logged_in_user()
     return render_template('new_wandering.html', this_user = this_user)
 
+@app.route('/wandering/<int:id>/edit')
+def edit_wandering_page(id):
+    if not 'user_id' in session:
+        return redirect('/')
+    this_wandering = wandering.Wandering.get_wandering_by_id(id)
+    this_user = user.User.get_logged_in_user()
+    return render_template('edit_wandering.html', this_wandering = this_wandering, this_user = this_user)
+
 # UPDATE
+@app.route('/wandering/edit/<int:id>', methods = ['POST'])
+def edit_wandering_form(id):
+    if not 'user_id' in session:
+        return redirect('/')
+    one_wandering = wandering.Wandering.get_wandering_by_id(id)
+    if one_wandering.user_id != session['user_id']:
+        return redirect('/dashboard')
+    if wandering.Wandering.edit_wandering(request.form):
+        return redirect('/dashboard')
+    return redirect(f'/wandering/{id}/edit')
 
 # DELETE
+@app.route('/wandering/delete/<int:id>')
+def delete_wandering(id):
+    if not 'user_id' in session:
+        return redirect('/')
+    one_wandering = wandering.Wandering.get_wandering_by_id(id)
+    if one_wandering.user_id != session['user_id']:
+        return redirect('/dashboard')
+    wandering.Wandering.delete_wandering_by_id(id)
+    return redirect(f'/user/{id}/wanderings')
 

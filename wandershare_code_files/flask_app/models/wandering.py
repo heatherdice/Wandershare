@@ -95,25 +95,35 @@ class Wandering:
             result = cls(result[0])
         return result
 
-    # @classmethod
-    # def get_avg_rating_by_id(cls, id):
-    #     query = """
-    #     SELECT ROUND(AVG('rating'), 2)
-    #     AS 'avg' 
-    #     COUNT('user_id')
-    #     AS 'num'
-    #     FROM wanderings
-    #     WHERE id = %(id)s
-    #     ;"""
-
 #UPDATE
-
+    @classmethod
+    def edit_wandering(cls, data):
+        if not Wandering.validate_wandering(data):
+            return False
+        query = """
+        UPDATE wanderings
+        SET location = %(location)s,
+        start_date = %(start_date)s,
+        end_date = %(end_date)s,
+        rating = %(rating)s,
+        details = %(details)s,
+        image = %(image)s
+        WHERE id = %(id)s
+        ;"""
+        connectToMySQL(cls.db).query_db(query, data)
+        return True
 
 #DELETE
-
+    @classmethod
+    def delete_wandering_by_id(cls, id):
+        data = {'id' : id}
+        query = """
+        DELETE FROM wanderings
+        WHERE id = %(id)s
+        ;"""
+        return connectToMySQL(cls.db).query_db(query, data)
 
 #VALIDATE
-
 @staticmethod
 def validate_wandering(form, file):
     print(form)
@@ -129,13 +139,13 @@ def validate_wandering(form, file):
         flash('Please enter an end date.')
         is_valid = False
     if not form.get('rating'):
-        flash('Please enter a rating')
+        flash('Please enter a rating.')
         is_valid = False
     if len(form['details']) < 20:
         flash('Please write a more detailed description of your trip.')
         is_valid = False
     if 'file' not in file:
-        flash('No file part')
+        flash('No file part.')
         is_valid = False
     print(form)
     return is_valid

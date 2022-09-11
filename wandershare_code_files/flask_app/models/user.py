@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 from flask import flash, session
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import wandering
 
 class User:
     db = 'wandershare'
@@ -71,6 +72,36 @@ class User:
         if result:
             result = cls(result[0])
         return result
+
+    @classmethod
+    def get_user_wanderings(cls):
+        data = {'id' : session['user_id']}
+        query = """
+        SELECT *
+        FROM users
+        LEFT JOIN wanderings
+        ON users.id = wanderings.user_id
+        WHERE users.id = %(id)s
+        ;"""
+        result = connectToMySQL(cls.db).query_db(query, data)
+        one_user = cls(result[0])
+        if result:
+            for row in result:
+                w_data = {
+                    'id' : row['wanderings.id'],
+                    'location' : row['location'],
+                    'start_date' : row['start_date'],
+                    'end_date' : row['end_date'],
+                    'rating' : row['rating'],
+                    'details' : row['details'],
+                    'image' : row['image'],
+                    'created_at' : row['wanderings.created_at'],
+                    'updated_at' : row['wanderings.updated_at'],
+                    'user_id' : row['user_id']
+                }
+                one_user.wanderings.append(wandering.Wandering(w_data))
+        return one_user
+
 
 # UPDATE
 

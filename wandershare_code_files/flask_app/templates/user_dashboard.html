@@ -4,28 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">    
     <title>Wandershare</title>
+    <link rel="icon" type="image/x-icon" href="../../static/images/wandershare_logo.png">
 </head>
 <body>
-    <header>
-        <h1>Wandershare</h1>
-        <a href="/dashboard">Dashboard</a> | <a href="/logout">Logout</a>
+    <header id="index-header" class="row">
+        <div class="col-9"> <!--75%-->
+            <h1 id="wandershare">Wandershare</h1>
+            <hr id="hr-header">
+            <a href="/dashboard" class="link-txt">Dashboard</a> | 
+            <a href="/wandering/new" class="link-txt">New Wandering</a> | 
+            <a href="/logout" class="link-txt">Logout</a>
+        </div>
+        <div class="col-3"> <!--25%-->
+            <img src="../../static/images/wandershare_logo.png" alt="Wandershare logo" id="logo">
+        </div>
     </header>
 
-    <main>
-        <h2>Your Wanderings</h2>
-        
-        <select name="" id="">
-            <option value="">username</option>
-            <option value="">location</option>
-            <option value="">rating</option>
-        </select>
+    <img src="../../static/images/mexico.png" alt="Mexican town" id="mexican-town-img">
 
-        {% for this_wandering in all_wanderings %}
-        <ul>
-            <li>{{this_wandering.location}} <a href="#">View</a>|<a href="#">Edit</a>|<a href="#">Delete</a></li>
-        </ul>
-        {% endfor %}
+    <main>
+        <div class="row">
+            <div class="col-12"><h2 id="your-wanderings">{{this_user.username}}'s Wanderings</h2></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+                <table>
+                    <thead>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Rating</th>
+                        <th>Actions</th>
+                    </thead>
+
+                    <tbody>
+                        {% for user_wandering in this_user.wanderings %}
+                            <tr>
+                                <td>{{user_wandering.location}}</td>
+                                <td>{{user_wandering.start_date}}</td>
+                                <td>{{user_wandering.end_date}}</td>
+                                <td>{{user_wandering.rating}}</td>
+                                <td><a href="#" class="route-link">View</a> |
+                                    <a href="/wandering/{{user_wandering.id}}/edit" class="route-link">Edit</a> |
+                                    <a href="/wandering/delete/{{user_wandering.id}}" class="route-link">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        <div class="col-1">
+
     </main>
 
 </body>

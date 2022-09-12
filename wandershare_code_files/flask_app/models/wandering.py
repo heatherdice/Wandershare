@@ -98,7 +98,7 @@ class Wandering:
 #UPDATE
     @classmethod
     def edit_wandering(cls, data):
-        if not Wandering.validate_wandering(data):
+        if not Wandering.validate_wandering(data, "edit"):
             return False
         query = """
         UPDATE wanderings
@@ -124,28 +124,25 @@ class Wandering:
         return connectToMySQL(cls.db).query_db(query, data)
 
 #VALIDATE
-@staticmethod
-def validate_wandering(form, file):
-    print(form)
-    print(file)
-    is_valid = True
-    if len(form['location']) < 2:
-        flash('Wandering location should be at least two characters long.')
-        is_valid = False
-    if len(form['start_date']) < 10:
-        flash('Please enter a start date.')
-        is_valid = False
-    if form['end_date'] == "":
-        flash('Please enter an end date.')
-        is_valid = False
-    if not form.get('rating'):
-        flash('Please enter a rating.')
-        is_valid = False
-    if len(form['details']) < 20:
-        flash('Please write a more detailed description of your trip.')
-        is_valid = False
-    if 'file' not in file:
-        flash('No file part.')
-        is_valid = False
-    print(form)
-    return is_valid
+    @staticmethod
+    def validate_wandering(form, file):
+        print(form)
+        print(file)
+        is_valid = True
+        if len(form['location']) < 2:
+            flash('Wandering location should be at least two characters long.')
+            is_valid = False
+        if len(form['start_date']) < 10:
+            flash('Please enter a start date.')
+            is_valid = False
+        if form['end_date'] == "":
+            flash('Please enter an end date.')
+            is_valid = False
+        if not form.get('rating'):
+            flash('Please enter a rating.')
+            is_valid = False
+        if len(form['details']) < 20:
+            flash('Please write a more detailed description of your trip.')
+            is_valid = False
+        print(form)
+        return is_valid

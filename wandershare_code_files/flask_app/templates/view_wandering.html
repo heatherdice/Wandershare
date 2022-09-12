@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Wandershare</title>
+    <link rel="icon" type="image/x-icon" href="../../static/images/wandershare_logo.png">
+</head>
+<body>
+    <header id="index-header" class="row">
+        <div class="col-9"> <!--75%-->
+            <h1 id="wandershare">Wandershare</h1>
+            <hr id="hr-header">
+            <a href="/dashboard" class="link-txt">Dashboard</a> | 
+            <a href="/user/{{session.user_id}}/wanderings" class="link-txt">Your Wanderings</a> | 
+            <a href="/logout" class="link-txt">Logout</a>
+        </div>
+        <div class="col-3"> <!--25%-->
+            <img src="../../static/images/wandershare_logo.png" alt="Wandershare logo" id="logo">
+        </div>
+    </header>
+
+    <main>
+        <h2>{{this_wandering.user.username}}'s trip to {{this_wandering.location}}</h2>
+
+        <h3>From {{this_wandering.start_date}} to {{this_wandering.end_date}}</h3>
+
+        <h3>Rating: {{this_wandering.rating}}</h3>
+
+        <h3>Details:</h3>
+        <p>{{this_wandering.details}}</p>
+
+        <h3>Pictures:</h3>
+        <div>{{this_wandering.image}}</div>
+
+    </main>
+</body>
+</html>

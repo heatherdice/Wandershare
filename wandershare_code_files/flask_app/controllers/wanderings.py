@@ -53,6 +53,14 @@ def dashboard():
     all_wanderings = wandering.Wandering.get_all_wanderings()
     return render_template('dashboard.html', all_wanderings = all_wanderings)
 
+@app.route('/wandering/<int:id>')
+def one_wandering_page(id):
+    if not 'user_id' in session:
+        return redirect('/')
+    this_wandering = wandering.Wandering.get_wandering_with_user_by_id(id)
+    this_user = user.User.get_user_by_id()
+    return render_template('view_wandering.html', this_wandering = this_wandering, this_user = this_user)
+
 @app.route('/wandering/new')
 def new_wandering_page():
     if not 'user_id' in session:
@@ -76,7 +84,15 @@ def edit_wandering_form(id):
     one_wandering = wandering.Wandering.get_wandering_by_id(id)
     if one_wandering.user_id != session['user_id']:
         return redirect('/dashboard')
-    if wandering.Wandering.edit_wandering(request.form):
+    data = request.form.to_dict()
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        data['image'] = '/static/images/'+filename
+    elif not file:
+        data['image'] = one_wandering.image
+    if wandering.Wandering.edit_wandering(data):
         return redirect('/dashboard')
     return redirect(f'/wandering/{id}/edit')
 

@@ -57,15 +57,15 @@
 
                             <label>Rating:
                                 <div class="rating">
-                                    <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide">
+                                    <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" {{"checked" if this_wandering.rating == 5}}>
                                         <label for="star5">☆</label>
-                                    <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide">
+                                    <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" {{"checked" if this_wandering.rating == 4}}>
                                         <label for="star4">☆</label>
-                                    <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide">
+                                    <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" {{"checked" if this_wandering.rating == 3}}>
                                         <label for="star3">☆</label>
-                                    <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide">
+                                    <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" {{"checked" if this_wandering.rating == 2}}>
                                         <label for="star2">☆</label>
-                                    <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide">
+                                    <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" {{"checked" if this_wandering.rating == 1}}>
                                         <label for="star1">☆</label>
                                     <div class="clear"></div>
                                 </div>
@@ -76,7 +76,10 @@
                             </label><br>
                             
                             <label>Image:
-                                <input type="file" name="file" value="{{this_wandering.image}}" multiple>
+                                <img src="{{this_wandering.image}}">
+                                <button type="button" onclick="document.getElementById('file').click()">Change File</button>
+                                <span id="file-change"></span>
+                                <input onchange="fileChange(this)" id="file" type="file" name="file" value="{{this_wandering.image}}" multiple>
                             </label><br>
                                         
                             <input type="submit" value="Update">
@@ -87,7 +90,6 @@
             <div class="col-3"></div>
         </div>    
     </main>
-
-
+    <script src="/static/js/script.js"></script>
 </body>
 </html>

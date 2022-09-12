@@ -102,7 +102,6 @@ class User:
                 one_user.wanderings.append(wandering.Wandering(w_data))
         return one_user
 
-
 # UPDATE
 
 

@@ -9,3 +9,10 @@ function fileChange(element) {
         fileChangeSpan.innerText = ""
     }
 }
+
+file.addEventListener("change", function () {
+    if(file.value) {
+        document.getElementById('input-div').style.border = '2px solid green';
+        fileLabel.innerText = "Image selected";
+    }
+})

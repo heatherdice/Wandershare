@@ -51,7 +51,7 @@
                                 <td>{{user_wandering.rating}}</td>
                                 <td><a href="/wandering/{{user_wandering.id}}" class="route-link">View</a> |
                                     <a href="/wandering/{{user_wandering.id}}/edit" class="route-link">Edit</a> |
-                                    <a href="/wandering/delete/{{user_wandering.id}}" class="route-link">Delete</a>
+                                    <a href="/wandering/delete/{{user_wandering.id}}" id="file-delete" class="route-link" onclick="fileDelete(this)">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -59,9 +59,11 @@
                 </table>
             </div>
 
-        <div class="col-1">
-
+            <div class="col-1">
+        </div>
     </main>
+
+    <script src="/static/js/script.js"></script>
 
 </body>
 </html>

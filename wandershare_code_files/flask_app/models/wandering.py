@@ -1,6 +1,9 @@
-from flask import flash
+from flask_app import app
+from flask import flash, session, request
 from flask_app.models import user
 from flask_app.controllers import wanderings
+import os
+from werkzeug.utils import secure_filename
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class Wandering:
@@ -100,6 +103,9 @@ class Wandering:
     def edit_wandering(cls, data):
         if not Wandering.validate_wandering(data, "edit"):
             return False
+        one_wandering = Wandering.get_wandering_by_id(data['id'])
+        if one_wandering.image != data['image']:
+            os.remove(f'/Users/heathermehr/projects_algos/core_assignments/Wandershare/wandershare_code_files/flask_app/{one_wandering.image}')
         query = """
         UPDATE wanderings
         SET location = %(location)s,
@@ -116,12 +122,17 @@ class Wandering:
 #DELETE
     @classmethod
     def delete_wandering_by_id(cls, id):
+        one_wandering = Wandering.get_wandering_by_id(id)
+        if one_wandering.user_id != session['user_id']:
+            return False
         data = {'id' : id}
         query = """
         DELETE FROM wanderings
         WHERE id = %(id)s
         ;"""
-        return connectToMySQL(cls.db).query_db(query, data)
+        connectToMySQL(cls.db).query_db(query, data)
+        os.remove(f'/Users/heathermehr/projects_algos/core_assignments/Wandershare/wandershare_code_files/flask_app/{one_wandering.image}')
+        return True
 
 #VALIDATE
     @staticmethod

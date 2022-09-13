@@ -17,12 +17,10 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         wandering.Wandering.validate_wandering(request.form, request.files)
-        print(request.files)
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print(filename)
             user_id = session['user_id']
             data = {
                 'location' : request.form['location'],
@@ -30,11 +28,10 @@ def upload_file():
                 'end_date' : request.form['end_date'],
                 'rating' : request.form['rating'],
                 'details' : request.form['details'],
-                'image' : '/static/images/'+filename,
+                'image' : f'/static/images/{filename}',
                 'user_id' : user_id
             }
             new_wandering = wandering.Wandering.create_wandering(data)
-            print(new_wandering)
             if not new_wandering:
                 return redirect('/wandering/new')
             return redirect(f'/user/{user_id}/wanderings')
@@ -86,11 +83,11 @@ def edit_wandering_form(id):
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        data['image'] = '/static/images/'+filename
+        data['image'] = f'/static/images/{filename}'
     elif not file:
         data['image'] = one_wandering.image
     if wandering.Wandering.edit_wandering(data):
-        return redirect('/dashboard')
+        return redirect(f'/wandering/{id}')
     return redirect(f'/wandering/{id}/edit')
 
 # DELETE
@@ -98,9 +95,7 @@ def edit_wandering_form(id):
 def delete_wandering(id):
     if not 'user_id' in session:
         return redirect('/')
-    one_wandering = wandering.Wandering.get_wandering_by_id(id)
-    if one_wandering.user_id != session['user_id']:
+    if wandering.Wandering.delete_wandering_by_id(id):
         return redirect('/dashboard')
-    wandering.Wandering.delete_wandering_by_id(id)
     return redirect(f'/user/{id}/wanderings')
 

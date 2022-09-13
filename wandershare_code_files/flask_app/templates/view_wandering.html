@@ -22,19 +22,32 @@
         </div>
     </header>
 
+    <img src="../static/images/winter.png" alt="winter mountains" id="background-img">
+
     <main>
-        <h2>{{this_wandering.user.username}}'s trip to {{this_wandering.location}}</h2>
+        <div class="row">
+            <div class="col-2"></div>
+                <div class="col-8">
+                    <div id="view-wandering">
+                        <div>
+                            <h2 id="wandering-title">{{this_wandering.user.username}}'s trip to {{this_wandering.location}}</h2>
+                        </div>
 
-        <h3>From {{this_wandering.start_date}} to {{this_wandering.end_date}}</h3>
+                        <hr id="hr-2">
 
-        <h3>Rating: {{this_wandering.rating}}</h3>
+                        <h3>From {{this_wandering.start_date}} to {{this_wandering.end_date}}</h3>
 
-        <h3>Details:</h3>
-        <p>{{this_wandering.details}}</p>
+                        <h3>Rating: {{this_wandering.rating}}</h3>
 
-        <h3>Pictures:</h3>
-        <div>{{this_wandering.image}}</div>
+                        <h3>Details:</h3>
+                        <p>{{this_wandering.details}}</p>
 
+                        <h3>Pictures:</h3>
+                        <img src="{{this_wandering.image}}"></img>
+                    </div>
+                </div>
+            <div class="col-2"></div>
+        </div>
     </main>
 </body>
 </html>

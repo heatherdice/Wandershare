@@ -23,6 +23,8 @@
         </div>
     </header>
 
+    <img src="../static/images/desert_town.png" alt="desert town" id="background-img">
+
     <main>
         <div class="row">
             <div class="col-3"></div>
@@ -42,43 +44,46 @@
                         {% endwith %}
         
                         <form action="/wanderings/add" method="post" enctype="multipart/form-data">
-                            <label>Location:
+                            <label class="new-lbl">Location:
                                 <input type="text" name="location">
                             </label><br>
 
-                            <label>Start Date: 
+                            <label class="new-lbl">Start Date: 
                                 <input type="date" name="start_date">
                             </label><br>
 
-                            <label>End Date: 
+                            <label class="new-lbl">End Date: 
                                 <input type="date" name="end_date">
                             </label><br>
 
-                            <label>Rating:
+                            <label class="new-lbl">Rating:
                                 <div class="rating">
-                                    <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide">
+                                    <input id="star5" name="rating" type="radio" value="5" class="radio-btn hide new-lbl">
                                         <label for="star5">☆</label>
-                                    <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide">
+                                    <input id="star4" name="rating" type="radio" value="4" class="radio-btn hide new-lbl">
                                         <label for="star4">☆</label>
-                                    <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide">
+                                    <input id="star3" name="rating" type="radio" value="3" class="radio-btn hide new-lbl">
                                         <label for="star3">☆</label>
-                                    <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide">
+                                    <input id="star2" name="rating" type="radio" value="2" class="radio-btn hide new-lbl">
                                         <label for="star2">☆</label>
-                                    <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide">
+                                    <input id="star1" name="rating" type="radio" value="1" class="radio-btn hide new-lbl">
                                         <label for="star1">☆</label>
                                     <div class="clear"></div>
                                 </div>
                             </label><br>
                             
-                            <label>Details:
-                                <textarea type="text" name="details"></textarea>
+                            <label class="new-lbl">Details:
+                                <br><textarea type="text" name="details" rows="5" cols="50"></textarea>
                             </label><br>
                             
-                            <label>Image:
-                                <input id="file" type="file" name="file" multiple onchange="fileValue(this)">
-                            </label><br>
-                                        
-                            <input type="submit" value="Submit">
+                            <div id="input-div">
+                                <label for="file" class="file-lbl">Insert an image
+                                    <input id="file" type="file" name="file" multiple onchange="fileValue(this)"><br>
+                                    <img src="../static/images/camera.png" alt="camera">
+                                </label>
+                            </div>
+
+                            <input id="btn-new" type="submit" value="Submit">
                             <input type="hidden" name="user_id" value={{session.user_id}}>
                         </form>
                     </div>

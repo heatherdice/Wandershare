@@ -1,4 +1,3 @@
-/* applies to entire site */
 * {
     box-sizing: border-box;
 }
@@ -27,34 +26,74 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-/* applies to index */
+/* general text stylings */
+#index-header, th {
+    font-family: cursive;
+    color: #FBEEC1;
+    text-shadow: 2px 2px #474853;
+}
+#wandershare, #wandering-title, #recent-wanderings, #your-wanderings {
+    font-family: cursive;
+    font-size: 3vw;
+    margin: 0;
+}
+#view-instructions, #wandering-title {
+    font-family: cursive;
+}
+#login-form, #about-section, #new-wandering-form, #register-form, td {
+    font-family: sans-serif;
+    text-align: center;
+}
+#login-form, #about-section, #view-instructions, #view-wandering, #your-wanderings, #recent-wanderings, .route-link {
+    color: #474853;
+}
+#btn-login, #btn-reg-link, #btn-valid-login, #register-txt {
+    color: #86B3D1;
+}
+#btn-register, #btn-valid-reg, #btn-new, .link-txt {
+    color: #FBEEC1;
+}
+#register-form, #new-wandering-form, .rating > label {
+    color: #844D36;
+}
+#recent-wanderings, #your-wanderings, #view-instructions {
+    text-shadow: 3px 3px 15px #FBEEC1,
+        -3px 3px 15px #FBEEC1;
+}
+#tagline, #about-wandershare, .link-txt, th {
+    font-size: 2vw;
+    margin: 0;
+}
+#login-form {
+    font-size: 1.5vw;
+}
+#register-txt, .link-txt, .route-link {
+    text-decoration: none;
+}
+#view-instructions {
+    text-align: left;
+    margin: 0;
+}
+
+/* applies to header */
 #index-header {
     width: 100%;
     display: flex;
     padding: 1vw;
     background-image: linear-gradient(
         to bottom right, #659DBD, #FBEEC1);
-    font-family: cursive;
-    text-shadow: 2px 2px #474853;
-    color: antiquewhite;
-}
-#wandershare, #recent-wanderings, #your-wanderings {
-    font-size: 3vw;
-    margin: 0;
 }
 #hr-header {
     background-color: #FBEEC1;
     margin-bottom: 2.5%;
-}
-#tagline, #about-wandershare, .link-txt {
-    font-size: 2vw;
-    margin: 0;
 }
 #logo {
     float: right;
     max-width: 100%;
     height: auto;
 }
+
+/* login page background vid */
 #video {
     position: fixed;
     object-fit: cover;
@@ -64,37 +103,9 @@
     min-height: 100%;
     z-index: -1;
 }
-#about-section, #login-form {
-    border: 1px solid #AAA0A0;
-    border-radius: 25px;
-    box-shadow: 10px 10px 5px #474853;
-    background-color: #FBEEC1;
-    padding: 2%;
-    text-align: center;
-    font-family: sans-serif;
-    color: #474853;
-}
-#hr-2 {
-    background-color: #474853;
-}
-#login-form {
-    font-size: 1.5vw;
-}
-#btn-login, #btn-reg-link, #btn-valid-login {
-    margin: 10px;
-    border-radius: 25px;
-    padding: 5px 20px;
-    background-color: #474853;
-    color: #86B3D1;
-    cursor: pointer;
-}
-#register-txt {
-    text-decoration: none;
-    color: #86B3D1;
-}
 
-/* applies to registration */
-#lake-img, #french-town-img, #mexican-town-img {
+/* applies to background image on all pages */
+#background-img {
     min-height: 100%;
     min-width: 1024px;
     width: 100%;
@@ -104,39 +115,46 @@
     left: 0;
     z-index: -1;
 }
+
+/* about section, form stylings */
+#about-section, #login-form {
+    border: 1px solid #AAA0A0;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #474853;
+    background-color: #FBEEC1;
+    padding: 2%;
+}
+#hr-2 {
+    background-color: #474853;
+}
+#btn-login, #btn-reg-link, #btn-valid-login {
+    margin: 10px;
+    border-radius: 25px;
+    padding: 5px 20px;
+    background-color: #474853;
+    cursor: pointer;
+}
 #register-form, #new-wandering-form {
     border-radius: 25px;
     padding: 5px 20px;
-    background: rgba(251, 238, 193, 0.7);
-    text-align: center;
-    font-family: sans-serif;
-    color: #844D36;
 }
-.register-lbl {
+#register-form {
+    background: rgba(251, 238, 193, 0.7);
+}
+.register-lbl, .new-lbl {
     display: block;
     margin-bottom: 20px;
 }
-#btn-register, #btn-valid-reg {
+#btn-register, #btn-valid-reg, #btn-new {
     margin: 10px;
     border-radius: 25px;
     padding: 5px 20px;
     background-color: #844D36;
-    color: #FBEEC1;
 }
 
-/* applies to dashboard */
+/* applies to dashboard, user dashboard */
 .link-txt {
     margin: 0px 10px;
-    text-decoration: none;
-    color: #FBEEC1;
-}
-#recent-wanderings, #your-wanderings {
-    color: #474853;
-    text-shadow: 3px 3px 15px #FBEEC1,
-        -3px 3px 15px #FBEEC1;
-}
-#recent-wanderings, #your-wanderings, th{
-    font-family: cursive;
 }
 table, th, td {
     border: 1px solid #474853;
@@ -153,21 +171,18 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background: rgba(251, 238, 193, 0.85);
 }
-tr:hover {
+tr:hover, #new-wandering-form {
     background: rgba(178, 211, 194, 0.85);
 }
 th {
     background-color: #86B3D1;
-    font-size: 2vw;
-    color: #FBEEC1;
-    text-shadow: 2px 2px #474853
 }
-td {
-    font-family: sans-serif;
-}
-.route-link {
-    text-decoration: none;
-    color: #474853;
+
+/* applies to view wandering */
+#view-wandering {
+    background: rgba(134, 179, 209, 0.85);
+    border-radius: 25px;
+    padding: 5%;
 }
 
 /* applies to rating stars only */
@@ -179,6 +194,9 @@ td {
     clear: both;
 }
 .rating {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     width: 90px;
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -193,7 +211,6 @@ td {
     position: relative;
     width: 1.1em;
     cursor: pointer;
-    color: #000;
 }
 .rating > label:hover,
 .rating > label:hover ~ label,
@@ -208,4 +225,19 @@ td {
     position: absolute;
     left: 0;
     color: #FFD700;
+}
+
+/* applies to image upload only */
+#input-div {
+    margin: 0% 25%;
+    border: 1px solid #844D36;
+    border-radius: 25px;
+    text-align: center;
+    /* padding: 3%; */
+}
+#file {
+    display: none;
+}
+.file-lbl {
+    cursor: pointer;
 }

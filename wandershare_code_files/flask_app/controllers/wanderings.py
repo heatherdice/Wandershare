@@ -16,7 +16,7 @@ def allowed_file(filename):
 @app.route('/wanderings/add', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        wandering.validate_wandering(request.form, request.files)
+        wandering.Wandering.validate_wandering(request.form, request.files)
         print(request.files)
         file = request.files['file']
         if file and allowed_file(file.filename):
@@ -36,13 +36,10 @@ def upload_file():
             new_wandering = wandering.Wandering.create_wandering(data)
             print(new_wandering)
             if not new_wandering:
-                return redirect(f'/user/{user_id}/wanderings')
-            return redirect('/wandering/new')
+                return redirect('/wandering/new')
+            return redirect(f'/user/{user_id}/wanderings')
         flash('Not an allowed file type.')
-        if file.filename == '':
-            flash('No selected file.')
-            return redirect('/wandering/new')
-        return redirect('/dashboard')
+        return redirect('/wandering/new')
     return redirect('/')
 
 # READ
@@ -58,8 +55,8 @@ def one_wandering_page(id):
     if not 'user_id' in session:
         return redirect('/')
     this_wandering = wandering.Wandering.get_wandering_with_user_by_id(id)
-    this_user = user.User.get_user_by_id()
-    return render_template('view_wandering.html', this_wandering = this_wandering, this_user = this_user)
+    # this_user = user.User.get_user_by_id()
+    return render_template('view_wandering.html', this_wandering = this_wandering)
 
 @app.route('/wandering/new')
 def new_wandering_page():

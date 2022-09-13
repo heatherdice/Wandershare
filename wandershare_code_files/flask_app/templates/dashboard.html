@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <img src="static/images/french_town.png" alt="French town" id="french-town-img">
+    <img src="static/images/french_town.png" alt="French town" id="background-img">
 
     <main>
         <div class="row">
@@ -33,6 +33,7 @@
             <div class="col-2"></div>
 
             <div class="col-8">
+                <h3 id="view-instructions">Click on a location's name to view details for that wandering</h3>
                 <table>
                     <thead>
                         <th>Username</th>
@@ -46,10 +47,10 @@
                         {% for this_wandering in all_wanderings %}
                             <tr>
                                 <td>{{this_wandering.user.username}}</td>
-                                <td>{{this_wandering.location}}</td>
+                                <td><a href="/wandering/{{this_wandering.id}}" class="route-link">{{this_wandering.location}}</a></td>
                                 <td>{{this_wandering.start_date}}</td>
                                 <td>{{this_wandering.end_date}}</td>
-                                <td>{{this_wandering.rating}}</td>        
+                                <td>{{this_wandering.rating}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

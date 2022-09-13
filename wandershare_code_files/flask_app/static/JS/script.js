@@ -1,3 +1,4 @@
+//changes image file on edit page
 function fileChange(element) {
     let fileChangeSpan = document.getElementById("file-change")
     if(element.value !== "") {

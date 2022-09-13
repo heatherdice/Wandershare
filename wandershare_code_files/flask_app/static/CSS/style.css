@@ -40,6 +40,9 @@
 #view-instructions, #wandering-title {
     font-family: cursive;
 }
+#view-txt, #btn-new, #btn-update {
+    font-family: sans-serif;
+}
 #login-form, #about-section, #new-wandering-form, #register-form, td {
     font-family: sans-serif;
     text-align: center;
@@ -50,7 +53,7 @@
 #btn-login, #btn-reg-link, #btn-valid-login, #register-txt {
     color: #86B3D1;
 }
-#btn-register, #btn-valid-reg, #btn-new, .link-txt {
+#btn-register, #btn-valid-reg, #btn-valid, #btn-new, #btn-update, .link-txt {
     color: #FBEEC1;
 }
 #register-form, #new-wandering-form, .rating > label {
@@ -145,7 +148,7 @@
     display: block;
     margin-bottom: 20px;
 }
-#btn-register, #btn-valid-reg, #btn-new {
+#btn-register, #btn-valid-reg, #btn-valid, #btn-new, #btn-update {
     margin: 10px;
     border-radius: 25px;
     padding: 5px 20px;
@@ -178,14 +181,18 @@ th {
     background-color: #86B3D1;
 }
 
-/* applies to view wandering */
+/* applies to view wandering, wandering images */
 #view-wandering {
     background: rgba(134, 179, 209, 0.85);
     border-radius: 25px;
     padding: 5%;
 }
+#wandering-img, textarea {
+    max-width: 100%;
+    height: auto;
+}
 
-/* applies to rating stars only */
+/* applies to rating stars */
 .hide {
     display: none;
 }

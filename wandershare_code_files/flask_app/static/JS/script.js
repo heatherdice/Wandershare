@@ -10,6 +10,7 @@ function fileChange(element) {
     }
 }
 
+//show that an image was added to the new wandering form
 file.addEventListener("change", function () {
     if(file.value) {
         document.getElementById('input-div').style.border = '2px solid green';

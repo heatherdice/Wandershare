@@ -35,15 +35,17 @@
 
                         <hr id="hr-2">
 
-                        <h3>From {{this_wandering.start_date}} to {{this_wandering.end_date}}</h3>
+                        <div id="view-txt">
+                            <h3>From {{this_wandering.start_date}} to {{this_wandering.end_date}}</h3>
 
-                        <h3>Rating: {{this_wandering.rating}}</h3>
+                            <h3>Rating: {{this_wandering.rating}}</h3>
 
-                        <h3>Details:</h3>
-                        <p>{{this_wandering.details}}</p>
+                            <h3>Details:</h3>
+                            <p>{{this_wandering.details}}</p>
 
-                        <h3>Pictures:</h3>
-                        <img src="{{this_wandering.image}}"></img>
+                            <h3>Pictures:</h3>
+                        </div>
+                        <img src="{{this_wandering.image}}" id="wandering-img"></img>
                     </div>
                 </div>
             <div class="col-2"></div>

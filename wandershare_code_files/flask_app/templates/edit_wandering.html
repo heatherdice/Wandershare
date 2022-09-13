@@ -78,13 +78,13 @@
                             </label><br>
                             
                             <label>Image:
-                                <img src="{{this_wandering.image}}">
+                                <img src="{{this_wandering.image}}" id="wandering-img">
                                 <button type="button" onclick="document.getElementById('file').click()">Change File</button>
                                 <span id="file-change"></span>
                                 <input onchange="fileChange(this)" id="file" type="file" name="file" value="{{this_wandering.image}}" multiple>
                             </label><br>
                                         
-                            <input type="submit" value="Update">
+                            <input id="btn-update" type="submit" value="Update">
                             <input type="hidden" name="user_id" value={{session.user_id}}>
                         </form>
                     </div>

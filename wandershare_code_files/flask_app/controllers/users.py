@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session
-from flask_app.models import user, wandering
+from flask_app.models import user
 
 # CREATE
 @app.route('/register', methods = ['POST'])

@@ -1,9 +1,6 @@
-from flask_app import app
-from flask import flash, session, request
+from flask import flash, session
 from flask_app.models import user
-from flask_app.controllers import wanderings
 import os
-from werkzeug.utils import secure_filename
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class Wandering:

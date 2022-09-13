@@ -52,7 +52,6 @@ def one_wandering_page(id):
     if not 'user_id' in session:
         return redirect('/')
     this_wandering = wandering.Wandering.get_wandering_with_user_by_id(id)
-    # this_user = user.User.get_user_by_id()
     return render_template('view_wandering.html', this_wandering = this_wandering)
 
 @app.route('/wandering/new')
@@ -96,6 +95,6 @@ def delete_wandering(id):
     if not 'user_id' in session:
         return redirect('/')
     if wandering.Wandering.delete_wandering_by_id(id):
-        return redirect('/dashboard')
-    return redirect(f'/user/{id}/wanderings')
+        return redirect(f'/user/{id}/wanderings')
+    return redirect('/dashboard')
 

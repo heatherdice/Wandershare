@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Wandershare</title>
     <link rel="icon" type="image/x-icon" href="../../static/images/wandershare_logo.png">
 </head>
 <body>
     <header id="index-header" class="row">
-        <div class="col-9"> <!--75%-->
+        <div class="col-9">
             <h1 id="wandershare">Wandershare</h1>
             <hr id="hr-header">
             <a href="/dashboard" class="link-txt">Dashboard</a> | 
             <a href="/wandering/new" class="link-txt">New Wandering</a> | 
             <a href="/logout" class="link-txt">Logout</a>
         </div>
-        <div class="col-3"> <!--25%-->
+        <div class="col-3">
             <img src="../../static/images/wandershare_logo.png" alt="Wandershare logo" id="logo">
         </div>
     </header>
@@ -51,7 +51,7 @@
                                 <td>{{user_wandering.rating}}</td>
                                 <td><a href="/wandering/{{user_wandering.id}}" class="route-link">View</a> |
                                     <a href="/wandering/{{user_wandering.id}}/edit" class="route-link">Edit</a> |
-                                    <a href="/wandering/delete/{{user_wandering.id}}" id="file-delete" class="route-link" onclick="fileDelete(this)">Delete</a>
+                                    <a href="/wandering/delete/{{user_wandering.id}}" id="file-delete" class="route-link">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -62,8 +62,5 @@
             <div class="col-1">
         </div>
     </main>
-
-    <script src="/static/js/script.js"></script>
-
 </body>
 </html>

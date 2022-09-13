@@ -11,12 +11,12 @@
 
 <body>
     <header id="index-header" class="row">
-        <div class="col-9"> <!--75%-->
+        <div class="col-9">
             <h1 id="wandershare">Wandershare</h1>
             <hr id="hr-header">
             <h2 id="tagline">Sharing stories of wanderings and adventures.</h2>
         </div>
-        <div class="col-3"> <!--25%-->
+        <div class="col-3">
             <img src="../static/images/wandershare_logo.png" alt="Wandershare logo" id="logo">
         </div>
     </header>
@@ -42,24 +42,31 @@
                         {% endwith %}
 
                         <form action="/register" method="POST">
+
                             <label class="register-lbl">First Name:
                                 <input type="text" name="first_name">
                             </label><br>
+
                             <label class="register-lbl">Last Name:
                                 <input type="text" name="last_name">
                             </label><br>
+
                             <label class="register-lbl">Username:
                                 <input type="text" name="username">
                             </label><br>
+
                             <label class="register-lbl">Email:
                                 <input type="email" name="email">
                             </label><br>
+
                             <label class="register-lbl">Password:
                                 <input type="password" name="password">
                             </label><br>
+
                             <label class="register-lbl">Confirm Password:
                                 <input type="password" name="confirm_password">
                             </label><br>
+                            
                             <input id="btn-register" type="submit" value="Register">
                         </form>
                     </div>
